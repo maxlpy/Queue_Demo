@@ -57,15 +57,8 @@ When `/get` is visited, fetch that key, and send value back to the client: `res.
 
 ### Recent visited sites
 
-Create a new route, `/recent`, which will display the most recently visited sites.
+Please see this funciton on `http://localhost:5001/recent`. It will show you all your recent visited urls.
 
-There is already a global hook setup, which will allow you to see each site that is requested:
-
-	app.use(function(req, res, next) 
-	{
-	...
-
-Use the lpush, ltrim, and lrange redis commands to store the most recent 5 sites visited, and return that to the client.
 
 ### Cat picture uploads: queue
 
@@ -79,4 +72,4 @@ In this process, `upload` store the images in a queue, `meow` display the most r
 
 ### Proxy server
 
-I have created a proxy sever on 'http://localhost:5000'. When you visit http://localhost:5000/meow, you will see a changed url which is http://localhost:5001/meow or http://localhost:5002/meow. The proxy server will direct to two different urls automatically.
+I have created a proxy sever on `http://localhost:5000`. When you visit this , you will see a changed url which is `http://localhost:5001/meow` or `http://localhost:5002/meow`. The proxy server will direct to two different urls automatically.

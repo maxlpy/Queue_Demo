@@ -1,5 +1,6 @@
-Cache, Proxies, Queues
-=========================
+# HW #3 Proxies, Queues, Cache Fluency (Option2).
+
+## Building Infrastructure
 
 ### Setup
 
@@ -10,7 +11,7 @@ Cache, Proxies, Queues
 
 Use [express](http://expressjs.com/) to install a simple web server.
 
-	var server = app.listen(3000, function () {
+	var server = app.listen(5000, function () {
 	
 	  var host = server.address().address
 	  var port = server.address().port
@@ -21,8 +22,14 @@ Use [express](http://expressjs.com/) to install a simple web server.
 Express uses the concept of routes to use pattern matching against requests and sending them to specific functions.  You can simply write back a response body.
 
 	app.get('/', function(req, res) {
-	  res.send('hello world')
+	  res.send('Welcome to this Server.')
 	})
+
+#### My installed servers
+	
+	node Server_1.js(port on 5001)
+	node Server_2.js(port on 5002)
+	node proxy.js   (port on 5000)
 
 ### Redis
 
@@ -62,18 +69,14 @@ Use the lpush, ltrim, and lrange redis commands to store the most recent 5 sites
 
 ### Cat picture uploads: queue
 
-Implement two routes, `/upload`, and `/meow`.
+Implement two routes, `/upload`, and `/meow`. The function is implement on port 5000, 5001, 5002.
  
-A stub for upload and meow has already been provided.
+Use curl to upload a picture using below command and then visit the page, you will see this picture.
 
-Use curl to help you upload easily.
+	curl -F "image=@./img/hairypotter.jpg" localhost:5000/upload
 
-	curl -F "image=@./img/morning.jpg" localhost:3000/upload
-
-Have `upload` store the images in a queue.  Have `meow` display the most recent image to the client and *remove* the image from the queue.
+In this process, `upload` store the images in a queue, `meow` display the most recent image to the client and *remove* the image from the queue.
 
 ### Proxy server
 
-Bonus: How might you use redis and express to introduce a proxy server?
-
-See [rpoplpush](http://redis.io/commands/rpoplpush)
+I have created a proxy sever on 'http://localhost:5000'. When you visit http://localhost:5000/meow, you will see a changed url which is http://localhost:5001/meow or http://localhost:5002/meow. The proxy server will direct to two different urls automatically.
