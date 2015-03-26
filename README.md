@@ -1,4 +1,4 @@
-# HW #3 Proxies, Queues, Cache Fluency (Option2).
+## HW #3 Proxies, Queues, Cache Fluency (Option2).
 
 ## Building Infrastructure
 
